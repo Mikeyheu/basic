@@ -41,4 +41,6 @@ end
 
 # Use unicorn as the app server
 gem 'unicorn'
-gem 'resque'
+
+# Use sidekiq for workers
+gem 'sidekiq'
