@@ -41,5 +41,4 @@ end
 
 # Use unicorn as the app server
 gem 'unicorn'
-
 gem 'resque'
