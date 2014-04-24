@@ -12,5 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.core
+//= require jquery.ui.widget
+//= require jfu/jquery.iframe-transport
+//= require jfu/jquery.fileupload
 //= require turbolinks
 //= require_tree .

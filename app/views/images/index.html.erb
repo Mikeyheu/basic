@@ -1,0 +1,11 @@
+<%= form_for Image.new do |f| %>
+  <p>
+    <%= f.file_field :photo, multiple: true, name: "image[photo]" %>
+  </p>
+  <p><%= f.submit %></p>
+<% end %>
+
+<% @images.each do |image| %>
+  <%= image_tag image.photo_url(:thumb).to_s %>
+<% end %>
+
