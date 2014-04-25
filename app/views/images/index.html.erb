@@ -2,10 +2,21 @@
   <p>
     <%= f.file_field :photo, multiple: true, name: "image[photo]" %>
   </p>
-  <p><%= f.submit %></p>
 <% end %>
 
 <% @images.each do |image| %>
   <%= image_tag image.photo_url(:thumb).to_s %>
 <% end %>
 
+
+<div class="progress_bar_wrapper">
+  <div class="progress_context" style="margin:10px 0px; display:none;">
+    <div class="upload_file_name" style="margin-top:5px; margin-bottom:-5px;">stuff.jpg</div>
+      <div class="progress-bar green">
+        <div style="width:0px;">
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

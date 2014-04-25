@@ -11,3 +11,12 @@
  *= require_self
  *= require_tree .
  */
+
+.progress-bar {
+  height: 18px;
+  background: green;
+}
+
+.progress_context {
+  width: 200px;
+}
