@@ -9,14 +9,10 @@
 <% end %>
 
 
-<div class="progress_bar_wrapper">
-  <div class="progress_context" style="margin:10px 0px; display:none;">
-    <div class="upload_file_name" style="margin-top:5px; margin-bottom:-5px;">stuff.jpg</div>
-      <div class="progress-bar green">
-        <div style="width:0px;">
-          <span></span>
-        </div>
-      </div>
+<div class="thumbnail_grid">
+  <% @images.each do |image| %>
+    <div class="thumbnail">
+      <%= image_tag image.photo_url(:thumb) %>
     </div>
-  </div>
+  <% end %>
 </div>

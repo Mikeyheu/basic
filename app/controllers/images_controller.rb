@@ -3,12 +3,29 @@ class ImagesController < ApplicationController
     @images = Image.all
   end
 
+  def show
+    @image = Image.find(params[:id])  
+    data = { image_id: @image.id }
+    respond_to do |format|
+      format.html { render json: @image }
+      format.json { render json: @image }
+    end
+  end
+
   def create
     @image = Image.new(image_params)
-    if @image.save
-      redirect_to images_path
-    else
-      render :index
+
+    respond_to do |format|
+      if @image.save
+        format.html { redirect_to images_path }
+        format.json { 
+          data = { image_id: @image.id }
+          render json: data
+        }
+      else
+        format.html { render :index }
+        format.json { render json: @image.errors }
+      end
     end
   end
 
