@@ -51,7 +51,7 @@ $(function(){
                       clearInterval(asset_timer);
                       data.context.find('.processing').remove();
                       data.context.append(img)
-                      // img.hide().fadeIn();
+                      img.hide().fadeIn();
                       })
                     .error(function() { console.log("error loading image"); })
                     .attr("src", response.photo.thumb.url );
