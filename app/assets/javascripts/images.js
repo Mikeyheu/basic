@@ -29,28 +29,34 @@ $(function(){
     },
     done: function(e, data) {
 
-      console.log(data);
-
         // SHOW PROCESSING GRAPHIC
         data.context.append('<div class="processing"></div>');
 
         // START INTERVAL CODE
-        var timer = setInterval(function(){
+        var data_timer = setInterval(function(){
           $.ajax({
             dataType: "json",
             type: "GET",
             url: "/images/" + data.result.image_id, 
             success: function(response){
-              console.log(response.photo);
               if (response.photo.thumb.url != null) {
+                clearInterval(data_timer);
+
+                // Start the check for the asset on s3
+
+                var asset_timer = setInterval(function(){
+                  var img = $('<img />').attr('src', response.photo.thumb.url).load(function(response, status, xhr){
+                    if (status == "success") {
+                      clearInterval(asset_timer);
+                      data.context.find('.processing').remove();
+                      data.context.append(img)
+                      img.hide().fadeIn();
+                    } else if (status == "error") {
+                      console.log("NOPE SORRY")
+                    }
+                  });
+                }, 2000);
                 
-                clearInterval(timer);
-                data.context.find('.processing').remove();
-                var img = $('<img />').attr('src', response.photo.thumb.url).load(function(){
-                  data.context.append(img)
-                }).hide().fadeIn();
-
-
               }
             }
           });
