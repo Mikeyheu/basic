@@ -17,3 +17,6 @@
 
 /config/database.yml
 /public/uploads
+
+# Ignore application configuration
+/config/local_env.yml
