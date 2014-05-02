@@ -29,6 +29,8 @@ $(function(){
     },
     done: function(e, data) {
 
+      console.log(data);
+
         // SHOW PROCESSING GRAPHIC
         data.context.append('<div class="processing"></div>');
 
@@ -37,7 +39,7 @@ $(function(){
           $.ajax({
             dataType: "json",
             type: "GET",
-            url: "/images/" + file.image_id,
+            url: "/images/" + data.image_id, /// What is file????
             success: function(response){
               console.log(response.photo);
               if (response.photo.thumb.url != null) {
