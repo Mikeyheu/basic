@@ -34,6 +34,7 @@ $(function(){
 
         // START INTERVAL CODE
         var data_timer = setInterval(function(){
+          console.log('DATA TIMER')
           $.ajax({
             dataType: "json",
             type: "GET",
@@ -42,26 +43,26 @@ $(function(){
               if (response.photo.thumb.url != null) {
                 clearInterval(data_timer);
 
-                // Start the check for the asset on s3
-
                 var asset_timer = setInterval(function(){
-                  var img = $('<img />').attr('src', response.photo.thumb.url).load(function(response, status, xhr){
-                    if (status == "success") {
+
+                  var img = $("<img/>")
+                    .load(function() { 
+                      console.log("image loaded correctly"); 
                       clearInterval(asset_timer);
                       data.context.find('.processing').remove();
                       data.context.append(img)
-                      img.hide().fadeIn();
-                    } else if (status == "error") {
-                      console.log("NOPE SORRY")
-                    }
-                  });
+                      // img.hide().fadeIn();
+                      })
+                    .error(function() { console.log("error loading image"); })
+                    .attr("src", response.photo.thumb.url );
+
+
                 }, 2000);
                 
               }
             }
           });
         }, 2000);
-
       
     }
   });
