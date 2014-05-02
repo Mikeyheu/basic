@@ -39,7 +39,7 @@ $(function(){
           $.ajax({
             dataType: "json",
             type: "GET",
-            url: "/images/" + data.image_id, /// What is file????
+            url: "/images/" + data.result.image_id, /// What is file????
             success: function(response){
               console.log(response.photo);
               if (response.photo.thumb.url != null) {
