@@ -11,14 +11,7 @@ require "sprockets/railtie"
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env)
 
-config.before_configuration do
-  env_file = File.join(Rails.root, 'config', 'local_env.yml')
-  if File.exists?(env_file)
-    YAML.load_file(env_file)[Rails.env].each do |key, value|
-      ENV[key.to_s] = value
-    end 
-  end
-end
+
 
 module Basic
   class Application < Rails::Application

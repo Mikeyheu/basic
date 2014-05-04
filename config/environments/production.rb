@@ -77,4 +77,13 @@ Basic::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  config.before_configuration do
+  env_file = File.join(Rails.root, 'config', 'local_env.yml')
+  if File.exists?(env_file)
+    YAML.load_file(env_file)[Rails.env].each do |key, value|
+      ENV[key.to_s] = value
+    end 
+  end
+end
 end
