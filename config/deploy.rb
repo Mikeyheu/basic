@@ -13,7 +13,7 @@ set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 set :ssh_options, { forward_agent: true }
 
 # Default value for :linked_files is []
-set :linked_files, %w{config/database.yml}
+set :linked_files, %w{config/database.yml config/local_env.yml}
 
 # Default value for linked_dirs is []
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
@@ -45,28 +45,4 @@ namespace :deploy do
     end
   end
 
-end
-
-namespace :rails do
-  desc "Open the rails console on each of the remote servers"
-  task :console do
-    on roles(:app), :primary => true do
-      rails_env = fetch(:stage)
-      execute_interactively "ruby #{current_path}/script/rails console #{rails_env}"  
-    end
-  end
- 
-  # desc "Open the rails dbconsole on each of the remote servers"
-  # task :dbconsole do
-  #   on roles(:db) do |host| #does it for each host, bad.
-  #     rails_env = fetch(:stage)
-  #     execute_interactively "ruby #{current_path}/script/rails dbconsole #{rails_env}"  
-  #   end
-  # end
- 
-  def execute_interactively(command)
-    user = fetch(:user)
-    port = fetch(:port) || 22
-    exec "ssh -l #{user} #{host} -p #{port} -t 'cd #{deploy_to}/current && #{command}'"
-  end
 end
