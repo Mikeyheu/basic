@@ -6,4 +6,3 @@ class NameReverser
     user.update_attribute(:name, user.name.reverse)
   end
 end
-

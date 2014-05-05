@@ -29,8 +29,6 @@ module Basic
 
     config.before_configuration do
       env_file = File.join(Rails.root, 'config', 'local_env.yml')
-      puts "ENV FILE HERE:"
-      puts env_file
 
       YAML.load(File.open(env_file)).each do |key, value|
         ENV[key.to_s] = value

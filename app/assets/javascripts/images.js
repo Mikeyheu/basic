@@ -24,17 +24,16 @@ $(function(){
 
       if(progress == 100){
         data.context.find('canvas, input, div').remove();
+        // SHOW PROCESSING GRAPHIC
+        data.context.append('<div class="processing"></div>');
       }
 
     },
     done: function(e, data) {
 
-        // SHOW PROCESSING GRAPHIC
-        data.context.append('<div class="processing"></div>');
-
         // START INTERVAL CODE
         var data_timer = setInterval(function(){
-          console.log('DATA TIMER')
+
           $.ajax({
             dataType: "json",
             type: "GET",
