@@ -39,11 +39,9 @@ $(function(){
             type: "GET",
             url: "/images/" + data.result.image_id, 
             success: function(response){
-              if (response.photo.thumb.url != null) {
+              console.log("photo_processing:" + response.photo.photo_processing)
+              if (response.photo.photo_processing == null) {
                 clearInterval(data_timer);
-
-                var asset_timer = setInterval(function(){
-
                   var img = $("<img/>")
                     .load(function() { 
                       console.log("image loaded correctly"); 
@@ -54,14 +52,10 @@ $(function(){
                       })
                     .error(function() { console.log("error loading image"); })
                     .attr("src", response.photo.thumb.url );
-
-
-                }, 2000);
-                
               }
             }
           });
-        }, 2000);
+        }, 3000);
       
     }
   });
