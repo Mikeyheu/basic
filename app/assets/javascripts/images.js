@@ -39,13 +39,13 @@ $(function(){
             type: "GET",
             url: "/images/" + data.result.image_id, 
             success: function(response){
-              console.log("photo_processing:" + response.photo.photo_processing)
-              if (response.photo.photo_processing == null) {
+              console.log("photo_processing:" + response.photo_processing)
+              if (response.photo_processing == null) {
                 clearInterval(data_timer);
                   var img = $("<img/>")
                     .load(function() { 
                       console.log("image loaded correctly"); 
-                      clearInterval(asset_timer);
+                      
                       data.context.find('.processing').remove();
                       data.context.append(img)
                       img.hide().fadeIn();
