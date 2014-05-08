@@ -2,7 +2,9 @@ $(function(){
 
   $('#new_image').fileupload({
     dataType: 'json',
+    sequentialUploads: true,
     add: function(e, data){
+
       var template = $('<div class="thumbnail"><input type="text" value="0" data-width="48" data-height="48"'+
                 ' data-fgColor="#0788a5" data-readOnly="1" data-bgColor="#3e4043" /></div>');
 
@@ -12,7 +14,6 @@ $(function(){
       });
       data.submit();
     },
-
     progress: function(e, data){
 
       // Calculate the completion percentage of the upload
@@ -24,38 +25,37 @@ $(function(){
 
       if(progress == 100){
         data.context.find('canvas, input, div').remove();
-        // SHOW PROCESSING GRAPHIC
         data.context.append('<div class="processing"></div>');
       }
 
     },
     done: function(e, data) {
 
-        // START INTERVAL CODE
-        var data_timer = setInterval(function(){
-
-          $.ajax({
-            dataType: "json",
-            type: "GET",
-            url: "/images/" + data.result.image_id, 
-            success: function(response){
-              console.log("photo_processing:" + response.photo_processing)
-              if (response.photo_processing == null) {
-                clearInterval(data_timer);
-                  var img = $("<img/>")
-                    .load(function() { 
-                      console.log("image loaded correctly"); 
-                      
-                      data.context.find('.processing').remove();
-                      data.context.append(img)
-                      img.hide().fadeIn();
-                      })
-                    .error(function() { console.log("error loading image"); })
-                    .attr("src", response.photo.thumb.url );
-              }
+      var pollServerForImage = function() {
+        // Code here
+        $.ajax({
+          dataType: 'json',
+          type: 'GET',
+          url: "/images/" + data.result.image_id, 
+          success: function(response) {
+            if (response.photo_processing == null) {
+              var img = $("<img/>")
+              .load(function() { 
+                console.log("image loaded!"); 
+                data.context.find('.processing').remove();
+                data.context.append(img)
+                img.hide().fadeIn();
+                })
+              .error(function() { console.log("error loading image"); })
+              .attr("src", response.photo.thumb.url );
+            } else {
+              console.log("image not ready yet")
+              setTimeout(pollServerForImage, 3000);
             }
-          });
-        }, 3000);
+          }
+        });
+      };
+      setTimeout(pollServerForImage, 3000);
       
     }
   });
