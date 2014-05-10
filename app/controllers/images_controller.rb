@@ -43,7 +43,6 @@ class ImagesController < ApplicationController
       image_urls << image.photo_url(:thumb)
     end
 
-
     respond_to do |format|
       format.json { render json: { image_ids: image_ids, image_urls: image_urls } }
     end
