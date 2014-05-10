@@ -34,13 +34,18 @@ class ImagesController < ApplicationController
   end
 
   def check_processed
-    file_ids = params[:file_ids]
+    images = Image.where(id:params[:file_ids], photo_processing:nil)
 
-    # unprocessed = Image.where(id:file_ids, photo_processing:nil).pluck(:id)
-    done_processing = Image.where(id:file_ids, photo_processing:nil).pluck(:id)
+    image_ids = []
+    image_urls = []
+    images.each_with_index do |image|
+      image_ids << image.id
+      image_urls << image.photo_url(:thumb)
+    end
+
 
     respond_to do |format|
-      format.json { render json:  { done_processing: done_processing } }
+      format.json { render json: { image_ids: image_ids, image_urls: image_urls } }
     end
   end
 

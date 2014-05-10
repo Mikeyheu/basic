@@ -1,5 +1,6 @@
 $(function(){
 
+ 
   var unprocessed_file_ids = [];
 
   var display_unprocessed_files = function(){
@@ -16,31 +17,26 @@ $(function(){
       url: "/images/check_processed",
       data:{ file_ids: unprocessed_file_ids},
       success: function(response) {
-        var done_processing = response.done_processing
-        console.log(done_processing)
-        $.each(done_processing, function(index, image_id){
-          console.log(image_id)
-            $.ajax({
-              dataType: 'json',
-              type: 'GET',
-              url: "/images/" + image_id, 
-              success: function(response) {
+        var image_ids = response.image_ids
+        var image_urls = response.image_urls
+
+        $.each(image_ids, function(index, id){
 
                 var img = $("<img/>")
                 .load(function() { 
-                  var thumbnail = $('div[data-image-id='+ image_id + ']')
+                  var thumbnail = $('div[data-image-id='+ id + ']')
                   thumbnail.find('.processing').remove();
                   thumbnail.append(img)
                   img.hide().fadeIn();
                 })
                 .error(function() { console.log("error loading image"); })
-                .attr("src", response.photo.thumb.url );
+                .attr("src", image_urls[index] );
 
-              }
-            });
         });
 
-        unprocessed_file_ids = $(unprocessed_file_ids).not(done_processing).get();
+        
+        unprocessed_file_ids = $(unprocessed_file_ids).not(image_ids).get();
+
 
         if (unprocessed_file_ids.length != 0) {
           setTimeout(display_unprocessed_files, 3000);
