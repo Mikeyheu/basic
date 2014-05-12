@@ -32,14 +32,14 @@ $(function(){
         // if all images have been uploaded and if unprocessed array is 0
         console.log("unprocessed_file_ids.length: " + unprocessed_file_ids.length);
         console.log("all_files_uploaded: " + all_files_uploaded);
-        if (unprocessed_file_ids.length != 0 || all_files_uploaded == false ) {
+        if (unprocessed_file_ids.length != 0 || all_files_uploaded == false || all_files_uploaded == undefined) {
           console.log("fired setTimeout");
           setTimeout(display_unprocessed_files, 3000);
         }
 
         if (unprocessed_file_ids.length == 0 && all_files_uploaded == true ) {
           console.log("reset");
-          var all_files_uploaded = false;
+          all_files_uploaded = false;
         }
       }
     });
@@ -52,6 +52,8 @@ $(function(){
     sequentialUploads: true,
     start: function(e) {
       // start checking to see if files have been processed
+      unprocessed_file_ids = [];
+      all_files_uploaded = false;
       setTimeout(display_unprocessed_files, 3000);
     },
     add: function(e, data){
