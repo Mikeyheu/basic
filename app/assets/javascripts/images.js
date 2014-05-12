@@ -36,6 +36,11 @@ $(function(){
           console.log("fired setTimeout");
           setTimeout(display_unprocessed_files, 3000);
         }
+
+        if (unprocessed_file_ids.length == 0 || all_files_uploaded == true ) {
+          console.log("reset");
+          var all_files_uploaded = false;
+        }
       }
     });
   }
