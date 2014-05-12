@@ -50,6 +50,7 @@ $(function(){
       setTimeout(display_unprocessed_files, 3000);
     },
     add: function(e, data){
+      console.log("data add" + data.total/1000 + "K")
       var template = $('<div class="thumbnail"><input type="text" value="0" data-width="48" data-height="48"'+
         ' data-fgColor="#0788a5" data-readOnly="1" data-bgColor="#3e4043" /></div>');
 
@@ -76,7 +77,7 @@ $(function(){
 
     },
     progressall: function(e, data) {
-      console.log("data total" + data.total)
+      console.log("data total" + data.total/1000 + "K")
       var progress = parseInt(data.loaded / data.total * 100, 10);
       if(progress == 100){
         console.log("data loaded" + data.loaded)
