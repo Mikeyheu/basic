@@ -1,18 +1,17 @@
 $(function(){
 
   var unprocessed_file_ids = [];
+  var all_files_uploaded = false;
 
   var display_unprocessed_files = function(){
 
-    // send the current unprocessed file ids to the server and check to see if any are null (finished processing)
     $.ajax({
       dataType: 'json',
       type: 'POST',
       url: "/images/check_processed",
       data:{ file_ids: unprocessed_file_ids},
       success: function(response) {
-        console.log("check_processed_response:");
-        console.log(response);
+
         var image_ids = response.image_ids
         var image_urls = response.image_urls
 
@@ -27,11 +26,11 @@ $(function(){
           .error(function() { console.log("error loading image"); })
           .attr("src", image_urls[index] );
         });
-
+        
         unprocessed_file_ids = $(unprocessed_file_ids).not(image_ids).get();
-
-        if (unprocessed_file_ids.length != 0) {
-          console.log("firing ajax check_processed again");
+        
+        // if all images have been uploaded and if unprocessed array is 0
+        if (unprocessed_file_ids.length != 0 || all_files_uploaded == false ) {
           setTimeout(display_unprocessed_files, 3000);
         }
       }
@@ -44,10 +43,10 @@ $(function(){
     dataType: 'json',
     sequentialUploads: true,
     start: function(e) {
+      // start checking to see if files have been processed
       setTimeout(display_unprocessed_files, 3000);
     },
     add: function(e, data){
-
       var template = $('<div class="thumbnail"><input type="text" value="0" data-width="48" data-height="48"'+
         ' data-fgColor="#0788a5" data-readOnly="1" data-bgColor="#3e4043" /></div>');
 
@@ -72,6 +71,12 @@ $(function(){
         data.context.append('<div class="processing"></div>');
       }
 
+    },
+    progressall: function(e,data) {
+      var progress = parseInt(data.loaded / data.total * 100, 10);
+      if(progress == 100){
+        all_files_uploaded = true;
+      }
     },
     done: function(e, data) {
 
