@@ -11,6 +11,8 @@ $(function(){
       url: "/images/check_processed",
       data:{ file_ids: unprocessed_file_ids},
       success: function(response) {
+        console.log("check_processed_response:");
+        console.log(response);
         var image_ids = response.image_ids
         var image_urls = response.image_urls
 
@@ -29,6 +31,7 @@ $(function(){
         unprocessed_file_ids = $(unprocessed_file_ids).not(image_ids).get();
 
         if (unprocessed_file_ids.length != 0) {
+          console.log("firing ajax check_processed again");
           setTimeout(display_unprocessed_files, 3000);
         }
       }

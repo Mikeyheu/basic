@@ -35,6 +35,8 @@ class ImagesController < ApplicationController
 
   def check_processed
     images = Image.where(id:params[:file_ids], photo_processing:nil)
+    puts "Images where photo_processing is nil:"
+    puts images
 
     image_ids = []
     image_urls = []
