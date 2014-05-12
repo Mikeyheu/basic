@@ -30,7 +30,10 @@ $(function(){
         unprocessed_file_ids = $(unprocessed_file_ids).not(image_ids).get();
         
         // if all images have been uploaded and if unprocessed array is 0
+        console.log("unprocessed_file_ids.length: " + unprocessed_file_ids.length);
+        console.log("all_files_uploaded: " + all_files_uploaded);
         if (unprocessed_file_ids.length != 0 || all_files_uploaded == false ) {
+          console.log("fired setTimeout");
           setTimeout(display_unprocessed_files, 3000);
         }
       }
@@ -72,9 +75,11 @@ $(function(){
       }
 
     },
-    progressall: function(e,data) {
+    progressall: function(e, data) {
+      console.log("data total" + data.total)
       var progress = parseInt(data.loaded / data.total * 100, 10);
       if(progress == 100){
+        console.log("data loaded" + data.loaded)
         all_files_uploaded = true;
       }
     },
