@@ -84,11 +84,8 @@ $(function(){
 
     },
     progressall: function(e, data) {
-      console.log("data total" + data.total/1000 + "K")
       var total_progress = parseInt(data.loaded / data.total * 100, 10);
       if(total_progress == 100){
-        console.log("data loaded" + data.loaded)
-        // why is this being set to true??????
         all_files_uploaded = true;
       }
     },
