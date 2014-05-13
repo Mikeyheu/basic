@@ -27,12 +27,13 @@ set :keep_releases, 5
 namespace :deploy do
 
   desc 'Copy local config files'
-  task :upload_config_files do
-    puts Dir.pwd
+  task :upload_local_env_files do
     on roles (:app) do
-      upload! '/config/local_env.yml', '#{shared_path}/local_env.yml'
+      upload! "config/local_env.yml", "#{shared_path}/config/local_env.yml"
     end
   end
+
+  after :started, :upload_local_env_files
 
   desc 'Restart application'
   task :restart do
@@ -41,6 +42,7 @@ namespace :deploy do
       # execute :touch, release_path.join('tmp/restart.txt')
     end
   end
+
 
   after :publishing, :restart
 
