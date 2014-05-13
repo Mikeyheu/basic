@@ -28,10 +28,7 @@ $(function(){
         });
         
         unprocessed_file_ids = $(unprocessed_file_ids).not(image_ids).get();
-        
-        // if all images have been uploaded and if unprocessed array is 0
-        console.log("unprocessed_file_ids.length: " + unprocessed_file_ids.length);
-        console.log("all_files_uploaded: " + all_files_uploaded);
+
         if (unprocessed_file_ids.length != 0 || all_files_uploaded == false || all_files_uploaded == undefined) {
           console.log("fired setTimeout");
           setTimeout(display_unprocessed_files, 3000);
