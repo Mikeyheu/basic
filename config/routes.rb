@@ -8,4 +8,5 @@ Basic::Application.routes.draw do
   end
   root to: 'sites#show' # , :constraints => { :subdomain => 'app'}
   # root to: 'sites#index'
+  #test
 end
