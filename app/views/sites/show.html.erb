@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+Site Info:
+
+Request: <%= @request %>
+
+Subdomin: <%= @site.subdomain if @site.subdomain %>
+
+Custom URL: <%= @site.custom_url if @site.custom_url %>
+
+<%= link_to 'Edit', edit_site_path(@site) %> |
+<%= link_to 'Back', sites_path %>
