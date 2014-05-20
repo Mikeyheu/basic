@@ -58,7 +58,6 @@ class SitesController < ApplicationController
   private
 
     def set_site
-    
       @site = Site.find(params[:id]) || Site.find_by(custom_url: request.host) || Site.find_by(subdomain: request.subdomain) 
     end
 
