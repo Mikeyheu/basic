@@ -6,7 +6,6 @@ Basic::Application.routes.draw do
       post 'check_processed'
     end
   end
-  root :to => "users#index", :constraints => { :domain => "trixstr.com" }
+  # root :to => "users#index", :constraints => { :domain => "trixstr.com" }
   root to: 'sites#show', :constraints => { :subdomain => 'sites'}
-  # root to: 'sites#index'
 end
