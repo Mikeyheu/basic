@@ -16,7 +16,7 @@
 /tmp
 
 /config/database.yml
-/public/uploads
+/public
 
 # Ignore application configuration
 /config/local_env.yml
