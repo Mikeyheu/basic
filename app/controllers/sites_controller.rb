@@ -1,7 +1,4 @@
 class SitesController < ApplicationController
-
-  caches_page :show
-
   before_action :set_site, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -9,7 +6,6 @@ class SitesController < ApplicationController
   end
 
   def show
-    # @site = Site.find(params[:id])
     @request = request.host
   end
 
@@ -58,7 +54,7 @@ class SitesController < ApplicationController
   private
 
     def set_site
-      @site = Site.find(params[:id]) || Site.find_by(custom_url: request.host) || Site.find_by(subdomain: request.subdomain) 
+      @site = Site.find_by(custom_url: request.host) || Site.find_by(subdomain: request.subdomain)  || Site.find(params[:id]) 
     end
 
     def site_params
