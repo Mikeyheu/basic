@@ -15,6 +15,8 @@ gem 'carrierwave'
 gem 'carrierwave_backgrounder'
 gem 'mini_magick'
 gem 'fog'
+gem 'actionpack-page_caching'
+gem 'actionpack-action_caching'
 
 group :doc do
   gem 'sdoc', require: false
