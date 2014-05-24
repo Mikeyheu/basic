@@ -17,6 +17,7 @@ gem 'mini_magick'
 gem 'fog'
 gem 'actionpack-page_caching'
 gem 'actionpack-action_caching'
+gem 'dalli'
 
 group :doc do
   gem 'sdoc', require: false
