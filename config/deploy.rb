@@ -34,7 +34,7 @@ namespace :deploy do
     end
   end
 
-  after :started, :upload_config_files
+  # after :started, :upload_config_files
 
   desc 'Restart application'
   task :restart do
