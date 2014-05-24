@@ -7,5 +7,5 @@ Basic::Application.routes.draw do
     end
   end
   # root :to => "users#index", :constraints => { :domain => "trixstr.com" }
-  root to: 'sites#show', :constraints => { :subdomain => 'sites'}
+  root to: 'sites#show'  #, :constraints => { :subdomain => 'sites'} # this breaks the subdomains and custom domains
 end
