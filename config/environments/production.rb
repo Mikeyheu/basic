@@ -13,7 +13,11 @@ Basic::Application.configure do
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
-  config.cache_store = :mem_cache_store, "memcached.lcrrp9.cfg.usw2.cache.amazonaws.com:11211"
+
+  # in config/environments/production.rb
+  endpoint    = "memcached.lcrrp9.cfg.usw2.cache.amazonaws.com:11211"
+  elasticache = Dalli::ElastiCache.new(endpoint)
+  config.cache_store = :dalli_store, elasticache.servers, {:expires_in => 1.day, :compress => true}
   config.action_controller.page_cache_directory = "#{Rails.root.to_s}/public/cache"
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application

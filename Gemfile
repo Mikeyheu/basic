@@ -18,6 +18,7 @@ gem 'fog'
 gem 'actionpack-page_caching'
 gem 'actionpack-action_caching'
 gem 'dalli'
+gem 'dalli-elasticache'
 
 group :doc do
   gem 'sdoc', require: false
