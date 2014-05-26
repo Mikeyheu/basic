@@ -1,8 +1,8 @@
 class SitesController < ApplicationController
   before_action :set_site, only: [:show, :edit, :update, :destroy]
 
-  # caches_action :index, :show
-   memcaches_page :index, :show
+  caches_action :index, :show
+   # memcaches_page :index, :show
 
 
   def index
