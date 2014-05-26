@@ -17,7 +17,8 @@ Basic::Application.configure do
   # in config/environments/production.rb
   endpoint    = "memcached.lcrrp9.cfg.usw2.cache.amazonaws.com:11211"
   elasticache = Dalli::ElastiCache.new(endpoint)
-  config.cache_store = :dalli_store, elasticache.servers, {:expires_in => 1.day, :compress => true}
+  config.cache_store = :dalli_store, elasticache.servers, {:expires_in => 1.day}
+  # config.cache_store = :dalli_store, elasticache.servers, {:expires_in => 1.day, :compress => true}
   config.action_controller.page_cache_directory = "#{Rails.root.to_s}/public/cache"
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
