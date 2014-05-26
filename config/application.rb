@@ -27,6 +27,8 @@ module Basic
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
+    config.autoload_paths += %W(#{config.root}/lib/modules)
+
     config.before_configuration do
       env_file = File.join(Rails.root, 'config', 'local_env.yml')
 
