@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # include MemcachesPage
 
   def cache_page(content = nil, options = nil, gzip = Zlib::BEST_COMPRESSION)
+  	puts "YOU ARE GETTING HIT!!!!"
     path = "/#{request.host}"
     path << case options
     when Hash

@@ -3,7 +3,7 @@ class SitesController < ApplicationController
 
   # caches_action :index, :show
   # memcaches_page :index, :show
-  caches_page :index, :show
+  caches_page :show
 
 
   def index
