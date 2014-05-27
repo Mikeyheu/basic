@@ -11,6 +11,7 @@ class SitesController < ApplicationController
   end
 
   def show
+    Rails.cache.write "testpath_for_mike", "Sample string", nil
     @request = request.host
   end
 
