@@ -13,14 +13,14 @@ class SitesController < ApplicationController
   def show
     result = Rails.cache.write "abc", "this is a test", nil
     logger.info "The request host: #{request.host}"
-    logger.debug "Writing to cache was successful: #{result}!"
+    logger.info "Writing to cache was successful: #{result}!"
     @request = request.host
   end
 
   def new
     @site = Site.new
   end
-  
+
   def edit
   end
 
