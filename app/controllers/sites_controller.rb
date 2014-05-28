@@ -11,10 +11,10 @@ class SitesController < ApplicationController
   end
 
   def show
-    result = Rails.cache.write "abc", "this is a test", nil
-    logger.info "The request host: #{request.host}"
-    logger.info "Writing to cache was successful: #{result}!"
     @request = request.host
+    key = @request + request.path
+    result = Rails.cache.write key, "this is a test", nil
+    logger.info "Writing to cache. Here's the request key: #{key}"
   end
 
   def new
