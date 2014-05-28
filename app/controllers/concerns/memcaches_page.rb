@@ -18,7 +18,7 @@ module MemcachesPage
       puts "attempting to write to cache"
       Rails.cache.write cache_path.gsub('%', '%25'), content, nil # options.merge(raw: true)
       puts "Dump of the cache"
-      puts Rails.cache
+      puts Rails.cache.stats
     end
   end
 
