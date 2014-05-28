@@ -2,7 +2,7 @@ class SitesController < ApplicationController
   before_action :set_site, only: [:show, :edit, :update, :destroy]
 
   # caches_action :index, :show
-  # memcaches_page :show
+  memcaches_page :show
   # caches_page :show
 
 
@@ -12,9 +12,6 @@ class SitesController < ApplicationController
 
   def show
     @request = request.host
-    key = @request + request.path
-    result = Rails.cache.write key, "this is a test", nil
-    logger.info "Writing to cache. Here's the request key: #{key}"
   end
 
   def new
