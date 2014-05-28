@@ -11,8 +11,11 @@ Basic::Application.configure do
   config.eager_load = true
 
   # Full error reports are disabled and caching is turned on.
-  config.consider_all_requests_local       = false
+  config.consider_all_requests_local       = true
   config.action_controller.perform_caching = true
+  config.action_controller.page_cache_directory = "#{Rails.root.to_s}/public/cache"
+  config.cache_store = :dalli_store, 'memcached.lcrrp9.0001.usw2.cache.amazonaws.com',
+  { :namespace => 'basic', :expires_in => 1.day, :compress => true }
 
   # in config/environments/production.rb
   # endpoint    = "memcached.lcrrp9.cfg.usw2.cache.amazonaws.com:11211"
@@ -20,9 +23,6 @@ Basic::Application.configure do
   # # config.cache_store = :dalli_store, elasticache.servers, {:expires_in => 1.day, :compress => true}
   # config.action_controller.page_cache_directory = "#{Rails.root.to_s}/public/cache"
   # config.cache_store = :dalli_store, elasticache.servers
-
-  # Trying to get the endpoint working with just dalli gem
-  config.cache_store = :dalli_store, 'memcached.lcrrp9.0001.usw2.cache.amazonaws.com', {:expires_in => 1.day}
 
 
   # Enable Rack::Cache to put a simple HTTP cache in front of your application
