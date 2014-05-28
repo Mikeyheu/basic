@@ -21,6 +21,4 @@ class ApplicationController < ActionController::Base
     Rails.cache.write path.gsub('%', '%25'), content, nil
   end
 
-  
-
 end
