@@ -69,8 +69,6 @@ GEM
     coffee-script-source (1.7.0)
     connection_pool (2.0.0)
     dalli (2.7.2)
-    dalli-elasticache (0.1.1)
-      dalli (>= 1.0.0)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     excon (0.33.0)
@@ -229,7 +227,6 @@ DEPENDENCIES
   carrierwave_backgrounder
   coffee-rails (~> 4.0.0)
   dalli
-  dalli-elasticache
   fog
   jbuilder (~> 1.2)
   jquery-rails
