@@ -10,17 +10,15 @@ module MemcachesPage
       end
     end
 
-    def memcache_page(content, host, path, options={})
+    def memcache_page(content, original_url, options={})
       return unless perform_caching
-      cache_path = host << path
-      logger.info "Writing to cache. Here's the cache_path: #{cache_path}"
-      Rails.cache.write cache_path.gsub('%', '%25'), content, nil # options.merge(raw: true)
-      logger.info "Cache stats --- : #{Rails.cache.stats}"
+      logger.info "Writing to cache. Here's the original_url: #{original_url}"
+      Rails.cache.write original_url.gsub('%', '%25'), content, options.merge(raw: true)
     end
   end
 
   def memcache_page(options = {})
     return unless self.class.perform_caching && caching_allowed? && !request.params.key?('no-cache')
-    self.class.memcache_page(response.body, request.host, request.fullpath, options)
+    self.class.memcache_page(response.body, request.original_url, options)
   end
 end
