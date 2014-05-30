@@ -14,12 +14,11 @@ Basic::Application.configure do
   config.consider_all_requests_local       = true
   config.action_controller.perform_caching = true
   config.action_controller.page_cache_directory = "#{Rails.root.to_s}/public/cache"
-  config.cache_store = :dalli_store, 'localhost:11211',
-  { :namespace => 'basic', :expires_in => 1.day, :compress => true }
+  config.cache_store = :dalli_store
+  # config.cache_store = :dalli_store, 'localhost:11211', { :namespace => 'basic', :expires_in => 1.day, :compress => true }
   
+  # 'memcached.lcrrp9.0001.usw2.cache.amazonaws.com'
 
-  # config.cache_store = :dalli_store, 'memcached.lcrrp9.0001.usw2.cache.amazonaws.com',
-  # in config/environments/production.rb
   # endpoint    = "memcached.lcrrp9.cfg.usw2.cache.amazonaws.com:11211"
   # elasticache = Dalli::ElastiCache.new(endpoint)
   # # config.cache_store = :dalli_store, elasticache.servers, {:expires_in => 1.day, :compress => true}
