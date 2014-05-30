@@ -13,7 +13,8 @@ module MemcachesPage
     def memcache_page(content, original_url, options={})
       return unless perform_caching
       logger.info "Writing to cache. Here's the original_url: #{original_url}"
-      Rails.cache.write original_url.gsub('%', '%25'), content, options.merge(raw: true)
+      # Rails.cache.write original_url.gsub('%', '%25'), content, options.merge(raw: true)
+      Rails.cache.write "mike_test", content, options.merge(raw: true)
     end
   end
 

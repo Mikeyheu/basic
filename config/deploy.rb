@@ -31,6 +31,7 @@ namespace :deploy do
     on roles (:app) do
       upload! "config/local_env.yml", "#{shared_path}/config/local_env.yml"
       upload! "config/database.yml", "#{shared_path}/config/database.yml"
+      upload! "config/nginx.conf", "#{shared_path}/config/nginx.conf"
     end
   end
 
