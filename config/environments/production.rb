@@ -16,7 +16,8 @@ Basic::Application.configure do
   config.action_controller.page_cache_directory = "#{Rails.root.to_s}/public/cache"
   # config.cache_store = :dalli_store
   # this is production
-  config.cache_store = :dalli_store, 'memcached.lcrrp9.0001.usw2.cache.amazonaws.com', { :namespace => 'basic', :expires_in => 1.day, :compress => true }
+  #next try removing namespace and compress true
+  config.cache_store = :dalli_store, 'memcached.lcrrp9.0001.usw2.cache.amazonaws.com', {:namespace => 'basic', :expires_in => 1.day}
   
   # 'memcached.lcrrp9.0001.usw2.cache.amazonaws.com'
 
