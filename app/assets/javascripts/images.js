@@ -51,7 +51,7 @@ $(function(){
       // start checking to see if files have been processed
       unprocessed_file_ids = [];
       all_files_uploaded = false;
-      setTimeout(display_unprocessed_files, 3000);
+      // setTimeout(display_unprocessed_files, 3000);
     },
     add: function(e, data){
       console.log("data add" + data.total/1000 + "K")

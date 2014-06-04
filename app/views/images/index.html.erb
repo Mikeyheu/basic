@@ -7,7 +7,7 @@
 <div class="thumbnail_grid">
   <% @images.each do |image| %>
     <div class="thumbnail">
-      <%= image_tag image.photo_url(:thumb) %>
+      <%= image_tag image.photo_url %>
     </div>
   <% end %>
 </div>
