@@ -17,7 +17,7 @@ Basic::Application.configure do
   # config.cache_store = :dalli_store
   # this is production
   # next try removing namespace and compress true
-  config.cache_store = :dalli_store, 'memcached.lcrrp9.0001.usw2.cache.amazonaws.com', {:namespace => 'basic', :expires_in => 1.day, compress: true}
+  config.cache_store = :dalli_store, 'memcached.lcrrp9.cfg.usw2.cache.amazonaws.com:11211', {:namespace => 'basic', :expires_in => 1.day, compress: true}
   
   # 'memcached.lcrrp9.0001.usw2.cache.amazonaws.com'
 
